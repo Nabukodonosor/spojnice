@@ -28,15 +28,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Asocijacije extends Activity implements OnClickListener{
-  
+	
+	Izbor obj = new Izbor();
+	
 	Button a1, a2, a3, a4, kolonaA, b1, b2, b3, b4, kolonaB, c1, c2, c3, c4, kolonaC, d1, d2, d3, d4, kolonaD, konacnoResenje, izlaz;
 	MediaPlayer buttonClicks, buttonKolone;
 	String mB1, mB2, mB3, mB4, mBKolonaB, mA1, mA2, mA3, mA4, mAKolonaA, mC1, mC2, mC3, mC4, 
 	mCKolonaC, mD1, mD2, mD3, mD4, mDKolonaD, mKonacno, konacanNormalized, kolonaANormalized, kolonaBNormalized,
 	kolonaCNormalized, kolonaDNormalized;
 	boolean music;
-	int brojPoenaAsocijacije = 100;
+	int brojPoenaAsocijacije = 105;
 	public static int brojPoenaUkupno;
+
 	int counter = 0;
 	final Context context = this;
 	Editable ukucanRezultatA, ukucanRezultatB, ukucanRezultatC, ukucanRezultatD, ukucanRezultatK;
@@ -102,10 +105,6 @@ public class Asocijacije extends Activity implements OnClickListener{
             vreme.setText("" + millisUntilFinished / 1000);
         }
     }
-	
-	public static int Poeni(){
-		return brojPoenaUkupno;
-	}
 	
 	private void setResults(){
 		
@@ -276,9 +275,9 @@ public class Asocijacije extends Activity implements OnClickListener{
 	        }else{
 	        	brojacVremena.cancel();
 	        	
+	        	obj.asocijacije.setClickable(false);
 	        	finish();
-		    	
-		    	mHandler.postDelayed(mLaunchTaskFinish,3100);
+	        	
 	        }
 		}
         
@@ -696,6 +695,8 @@ public class Asocijacije extends Activity implements OnClickListener{
                                                 		mHandler.postDelayed(mLaunchTask,3700);
                                                 		
                                                 		brojPoenaUkupno = brojPoenaUkupno + brojPoenaAsocijacije;
+                                                		
+                                                		brojPoenaAsocijacije = 105;
                                             			
                                             			setResults();
                                             			
