@@ -60,7 +60,9 @@ public class Spojnice extends Activity implements View.OnClickListener{
 	    	            // first button is clicked
 	    	        	debug.setText("\n tag " + button.getTag() + " " + button.getParent());
 	    	            buttonClicked = button;
-	    	     } else if ( !buttonClicked.getParent().equals(button.getParent())) { //might have to see how to compare buttons on android this would work in java or maybe getName ?
+	    	            // only do stuff if buttons are in different layouts
+	    	        } else if (button.getParent () != buttonClicked.getParent()) {
+	    	             // second button is clicked
 	    	         if(buttonClicked.getTag().equals(button.getTag()) ){
 	    	        	 debug.setText("\n tag " + buttonClicked.getTag() + " " + buttonClicked.getParent());
 	    	            // second button is clicked and same tag but different button
