@@ -1,9 +1,9 @@
-package rs.androidaplikacije.spojnice;
+package rs.androidaplikacije.toplo_hladno;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
-import com.swarmconnect.SwarmLeaderboard;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,65 +21,84 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Spojnice extends Activity implements View.OnClickListener{
-  
+	
+	   Button previousButton = null;
+	   //private Button buttonClicked;
+	
+		//private static final Integer[] idArrayA = {R.id.bA1, R.id.bA2, R.id.bA3, R.id.bA4, R.id.bA5, R.id.bA6, R.id.bA7, R.id.bA8};
+		//private static final Integer[] idArrayB = {R.id.bB1, R.id.bB2, R.id.bB3, R.id.bB4, R.id.bB5, R.id.bB6, R.id.bB7, R.id.bB8};
+	
    	    private int brojacIgara = 0;
    	    private int counter = 0;
 	
-		MyCount brojacVremena = new MyCount(45000, 1000);
- 
-    // labelForButton and tagForButton
-       class MyStruct {
-       public MyStruct (String lab, String t){
-   	    label = lab;
-   	    tag = t;
-   	}
-       private String label;
-       private String tag;
-       }
+		MyCount brojacVremena = new MyCount(450000, 1000);
+		
+		// labelForButton and tagForButton
+	       class MyStruct {
+	       public MyStruct (String lab, String t){
+	   	    label = lab;
+	   	    tag = t;
+	   	}
+	       private String label;
+	       private String tag;
+	       }
        
-       final OnClickListener clickListener = new OnClickListener() {
-   	    	
-   	    	private Button buttonClicked;
-   	    	private int brojacKlikova = 0;
+	       final OnClickListener clickListener = new OnClickListener() {
 
-   	        public void onClick(View v) {
-   	        	brojacKlikova++;
-   	        	if (brojacKlikova < 16) {
-   	        		
-   	            Button button = (Button) v;
-   	            button.getBackground().setColorFilter(new LightingColorFilter(0xFFFFFFFF, 0x003333));
-   	            
-   	            if (buttonClicked == null) {
-   	                // first button is clicked
-   	                buttonClicked = button;
-   	            } else {
-   	                // second button is clicked
-   	                if (buttonClicked.getTag().equals(button.getTag())) {
-   	                    button.getBackground().setColorFilter(new LightingColorFilter(0xFFFFFFFF, 0x66FF33));
-   	                    buttonClicked.getBackground().setColorFilter(new LightingColorFilter(0xFFFFFFFF, 0x66FF33));
-   	                    buttonClicked.setEnabled(false);
-	                    button.setEnabled(false);
-	                    counter = counter + 5;
-	                    score.setText("Poeni: " + counter);
-   	                } else {
-   	                    buttonClicked.setEnabled(false);
-   	                    buttonClicked.setTextColor(Color.GRAY);
-   	                    buttonClicked.getBackground().setColorFilter(new LightingColorFilter(0xFFFFFFFF, 0xFFCC99));
-   	                    button.getBackground().clearColorFilter();
-   	                }
-   	                buttonClicked = null;
-   	            }
-   	        	}else{
-   	        	buttonClicked = null;
-   	        	brojacKlikova = 0;
-   	        	brojacVremena.cancel();
-   	        	mHandler.postDelayed(mLaunchTask,2200);
-   	     }
-   	        }
-   	 };
+	    	    private Button buttonClicked;
+
+	    	    public void onClick(View v) {
+	    	        Button button = (Button) v;
+	    	        button.getBackground().setColorFilter(new LightingColorFilter(0xFFFFFFFF, 0x003333));
+
+	    	        if (buttonClicked == null) {
+	    	            // first button is clicked
+	    	        	debug.setText("\n tag " + button.getTag() + " " + button.getParent());
+	    	            buttonClicked = button;
+	    	     } else if ( !buttonClicked.getParent().equals(button.getParent())) { //might have to see how to compare buttons on android this would work in java or maybe getName ?
+	    	         if(buttonClicked.getTag().equals(button.getTag()) ){
+	    	        	 debug.setText("\n tag " + buttonClicked.getTag() + " " + buttonClicked.getParent());
+	    	            // second button is clicked and same tag but different button
+
+	    	                Toast.makeText(Spojnice.this, "Correct", Toast.LENGTH_SHORT).show();
+	    	                button.getBackground().setColorFilter(new LightingColorFilter(0xFFFFFFFF, 0x66FF33));
+	    	                buttonClicked.getBackground().setColorFilter(new LightingColorFilter(0xFFFFFFFF, 0x66FF33));
+	    	                buttonClicked.setEnabled(false);
+	    	                button.setEnabled(false);
+	    	                buttonClicked = null;
+	    	            } else {
+	    	                //reset LightingColorFilter first
+	    	                Toast.makeText(Spojnice.this, "Wrong", Toast.LENGTH_SHORT).show();
+	    	                buttonClicked = null;//i guess you want to make it back to initial state so null and current button
+
+	    	            }
+	    	           }else{
+	    	               //same button clicked show message or un toggle?
+	    	               buttonClicked = button;
+	    	           }
+	    	        }       
+	    	    };
+   	 
+   	/*final OnClickListener clickListener2 = new OnClickListener() {
+   		Button a = null;
+   		public void onClick(View v) {
+   			
+   			onButtonClicked(Button b) {
+   			    if (a != null && a.getTag().equals(b.getTag()) {
+   			        System.out.println("Hurray, a match");
+   			    } else {
+   			        a = b;
+   			    }
+   			}
+   			
+   		}
+   		
+   	};*/
        
 	
 	LinkedList<Long> mAnsweredQuestions = new LinkedList<Long>();
@@ -91,7 +110,7 @@ public class Spojnice extends Activity implements View.OnClickListener{
 	    }
 	    return result.toString();
 	}
-	private TextView pitanje, score, vreme;
+	private TextView pitanje, score, vreme, debug, debug2;
 	
 	Button a1,a2,a3,a4,a5,a6,a7,a8,b1,b2,b3,b4,b5,b6,b7,b8,izlaz;
 	MediaPlayer buttonBack;
@@ -123,29 +142,29 @@ public class Spojnice extends Activity implements View.OnClickListener{
 		Typeface dugmad = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
 		Typeface AB = Typeface.createFromAsset(getAssets(), "ARIALN.TTF");
 		buttonBack = MediaPlayer.create(this, R.raw.button31);
-		a1 = (Button) findViewById(R.id.bA1);
-		a2 = (Button) findViewById(R.id.bA2);
-		a3 = (Button) findViewById(R.id.bA3);
-		a4 = (Button) findViewById(R.id.bA4);
-		a5 = (Button) findViewById(R.id.bA5);
-		a6 = (Button) findViewById(R.id.bA6);
-		a7 = (Button) findViewById(R.id.bA7);
-		a8 = (Button) findViewById(R.id.bA8);
-		b1 = (Button) findViewById(R.id.bB1);
-		b2 = (Button) findViewById(R.id.bB2);
-		b3 = (Button) findViewById(R.id.bB3);
-		b4 = (Button) findViewById(R.id.bB4);
-		b5 = (Button) findViewById(R.id.bB5);
-		b6 = (Button) findViewById(R.id.bB6);
-		b7 = (Button) findViewById(R.id.bB7);
-		b8 = (Button) findViewById(R.id.bB8);
-		izlaz = (Button) findViewById(R.id.bIzlaz);
-		izlaz.setTypeface(dugmad);
-		score = (TextView) findViewById(R.id.tvPoeni);
-		score.setTypeface(dugmad);
-		vreme = (TextView) findViewById(R.id.tvVreme);
-		vreme.setTypeface(dugmad);
-		pitanje = (TextView) findViewById(R.id.tvPitanje);
+		a1 = (Button) findViewById(R.id.bSpojniceA1);
+		a2 = (Button) findViewById(R.id.bSpojniceA2);
+		a3 = (Button) findViewById(R.id.bSpojniceA3);
+		a4 = (Button) findViewById(R.id.bSpojniceA4);
+		a5 = (Button) findViewById(R.id.bSpojniceA5);
+		a6 = (Button) findViewById(R.id.bSpojniceA6);
+		a7 = (Button) findViewById(R.id.bSpojniceA7);
+		a8 = (Button) findViewById(R.id.bSpojniceA8);
+		b1 = (Button) findViewById(R.id.bSpojniceB1);
+		b2 = (Button) findViewById(R.id.bSpojniceB2);
+		b3 = (Button) findViewById(R.id.bSpojniceB3);
+		b4 = (Button) findViewById(R.id.bSpojniceB4);
+		b5 = (Button) findViewById(R.id.bSpojniceB5);
+		b6 = (Button) findViewById(R.id.bSpojniceB6);
+		b7 = (Button) findViewById(R.id.bSpojniceB7);
+		b8 = (Button) findViewById(R.id.bSpojniceB8);
+		//izlaz = (Button) findViewById(R.id.bIzlazSpojnice);
+		//izlaz.setTypeface(dugmad);
+		//score = (TextView) findViewById(R.id.tvPoeniSpojnice);
+		//score.setTypeface(dugmad);
+		//vreme = (TextView) findViewById(R.id.tvVremeSpojnice);
+		//vreme.setTypeface(dugmad);
+		pitanje = (TextView) findViewById(R.id.tvPitanjeSpojnice);
 		pitanje.setTypeface(pitanjeType);
 		b1.setTypeface(AB);
 		b2.setTypeface(AB);
@@ -163,6 +182,9 @@ public class Spojnice extends Activity implements View.OnClickListener{
 		a6.setTypeface(AB);
 		a7.setTypeface(AB);
 		a8.setTypeface(AB);
+		debug = (TextView) findViewById(R.id.tvDebug);
+		debug2 = (TextView) findViewById(R.id.tvDebug2);
+
 		
 		SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 		music = getPrefs.getBoolean("checkbox", true);
@@ -186,7 +208,7 @@ public class Spojnice extends Activity implements View.OnClickListener{
 
 			@Override
 			public void onTick(long millisUntilFinished) {
-				vreme.setText("" + millisUntilFinished / 1000);
+				//vreme.setText("" + millisUntilFinished / 1000);
 				
 			}
 			
@@ -198,13 +220,17 @@ public class Spojnice extends Activity implements View.OnClickListener{
 		
 	
 		TestAdapter mDbHelper = new TestAdapter(this);
+		DataBaseHelper myDbHelper = new DataBaseHelper(this);
+		
+		if(!myDbHelper.checkDataBase()){
 		mDbHelper.createDatabase();
+		}
 		
 		try{    //Pokusava da otvori db
         	
 	        mDbHelper.open();  //baza otvorena
 	        
-	        Cursor c = mDbHelper.getTestData(generateWhereClause());
+	        Cursor c = mDbHelper.getSpojnice(generateWhereClause());
 	        
 	        mAnsweredQuestions.add(c.getLong(0));
 	     
@@ -317,11 +343,9 @@ public class Spojnice extends Activity implements View.OnClickListener{
 	        b8.setEnabled(true);
 	        }else{
 	        	brojacVremena.cancel();
-	        	Intent i = new Intent(getApplicationContext(), Rezultat.class);
-		    	i.putExtra("noviRezultat", counter);
-				startActivity(i);
+	        	
 				mHandler.postDelayed(mLaunchTaskFinish,4000);
-	        	SwarmLeaderboard.submitScore(7427, counter);
+	        	//SwarmLeaderboard.submitScore(7427, counter);
 	        }
 
 		}
@@ -330,7 +354,7 @@ public class Spojnice extends Activity implements View.OnClickListener{
 		finally{    // kada zavrsi sa koriscenjem baze podataka, zatvara db
         	mDbHelper.close();
         }
-		izlaz.setOnClickListener(new OnClickListener() {
+		/*izlaz.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
 				if(music == true){
@@ -338,11 +362,11 @@ public class Spojnice extends Activity implements View.OnClickListener{
 						}
 				finish();	
 			}
-		});
+		});*/
 	}
-	public void onClick(View arg0) {
-		// TODO Auto-generated method stub
-		
+	public void onClick(View v) {
+		    
+   		
 	}
 	@Override
 	protected void onStop() {
