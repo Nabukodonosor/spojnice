@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="top|center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tvPitanjeSpojnice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ovde ce biti postavljeno pitanje"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/spojniceKolona1"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="50"
+            android:gravity="top"
+            android:orientation="vertical"
+            android:paddingLeft="3dp"
+            android:paddingRight="2dp" >
+
+            <Button
+                android:id="@+id/bSpojniceA1"
+                android:layout_width="fill_parent"
+                android:layout_height="41dp"
+                android:layout_gravity="clip_horizontal"
+                android:layout_marginBottom="1.5dp"
+                android:background="@drawable/buttons"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:tag="l"
+                android:text="A1"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/bSpojniceA2"
+                android:layout_width="fill_parent"
+                android:layout_height="41dp"
+                android:text="A2"
+                android:background="@drawable/buttons"
+                android:textColor="#ffffff"
+                android:layout_marginBottom="1.5dp"
+                android:layout_marginTop="1.5dp"
+                android:tag="l"
+                android:padding="0dp"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/bSpojniceA3"
+                android:layout_width="fill_parent"
+                android:layout_height="41dp"
+                android:text="A3"
+                android:background="@drawable/buttons"
+                android:textColor="#ffffff"
+                android:layout_marginBottom="1.5dp"
+                android:layout_marginTop="1.5dp"
+                android:tag="l"
+                android:padding="0dp"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/bSpojniceA4"
+                android:layout_width="fill_parent"
+                android:layout_height="41dp"
+                android:text="A4"
+                android:background="@drawable/buttons"
+                android:textColor="#ffffff"
+                android:layout_marginBottom="1.5dp"
+                android:layout_marginTop="1.5dp"
+                android:tag="l"
+                android:padding="0dp"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/bSpojniceA5"
+                android:layout_width="fill_parent"
+                android:layout_height="41dp"
+                android:text="A5"
+                android:background="@drawable/buttons"
+                android:textColor="#ffffff"
+                android:layout_marginBottom="1.5dp"
+                android:layout_marginTop="1.5dp"
+                android:tag="l"
+                android:padding="0dp"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/bSpojniceA6"
+                android:layout_width="fill_parent"
+                android:layout_height="41dp"
+                android:text="A6"
+                android:background="@drawable/buttons"
+                android:textColor="#ffffff"
+                android:layout_marginBottom="1.5dp"
+                android:layout_marginTop="1.5dp"
+                android:tag="l"
+                android:padding="0dp"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/bSpojniceA7"
+                android:layout_width="fill_parent"
+                android:layout_height="41dp"
+                android:text="A7"
+                android:background="@drawable/buttons"
+                android:textColor="#ffffff"
+                android:layout_marginBottom="1.5dp"
+                android:layout_marginTop="1.5dp"
+                android:tag="l"
+                android:padding="0dp"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/bSpojniceA8"
+                android:layout_width="fill_parent"
+                android:layout_height="41dp"
+                android:text="A8"
+                android:background="@drawable/buttons"
+                android:textColor="#ffffff"
+                android:layout_marginTop="1.5dp"
+                android:tag="l"
+                android:padding="0dp"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/spojniceKolona2"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="50"
+            android:gravity="top"
+            android:orientation="vertical"
+            android:paddingLeft="2dp"
+            android:paddingRight="3dp" >
+
+            <Button
+                android:id="@+id/bSpojniceB1"
+                android:layout_width="fill_parent"
+                android:layout_height="41dp"
+                android:layout_gravity="top|fill_horizontal"
+                android:layout_marginBottom="1.5dp"
+                android:background="@drawable/buttons"
+                android:gravity="top|center_horizontal"
+                android:tag="r"
+                android:text="B1"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/bSpojniceB2"
+                android:layout_width="fill_parent"
+                android:layout_height="41dp"
+                android:layout_marginBottom="1.5dp"
+                android:layout_marginTop="1.5dp"
+                android:background="@drawable/buttons"
+                android:gravity="top|center_horizontal"
+                android:tag="r"
+                android:text="B2"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/bSpojniceB3"
+                android:layout_width="fill_parent"
+                android:layout_height="41dp"
+                android:layout_marginBottom="1.5dp"
+                android:layout_marginTop="1.5dp"
+                android:background="@drawable/buttons"
+                android:gravity="top|center_horizontal"
+                android:tag="r"
+                android:text="B3"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/bSpojniceB4"
+                android:layout_width="fill_parent"
+                android:layout_height="41dp"
+                android:layout_marginBottom="1.5dp"
+                android:layout_marginTop="1.5dp"
+                android:background="@drawable/buttons"
+                android:gravity="top|center_horizontal"
+                android:tag="r"
+                android:text="B4"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/bSpojniceB5"
+                android:layout_width="fill_parent"
+                android:layout_height="41dp"
+                android:layout_marginBottom="1.5dp"
+                android:layout_marginTop="1.5dp"
+                android:background="@drawable/buttons"
+                android:gravity="top|center_horizontal"
+                android:tag="r"
+                android:text="B5"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/bSpojniceB6"
+                android:layout_width="fill_parent"
+                android:layout_height="41dp"
+                android:layout_marginBottom="1.5dp"
+                android:layout_marginTop="1.5dp"
+                android:background="@drawable/buttons"
+                android:gravity="top|center_horizontal"
+                android:tag="r"
+                android:text="B6"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/bSpojniceB7"
+                android:layout_width="fill_parent"
+                android:layout_height="41dp"
+                android:layout_marginBottom="1.5dp"
+                android:layout_marginTop="1.5dp"
+                android:background="@drawable/buttons"
+                android:gravity="top|center_horizontal"
+                android:tag="r"
+                android:text="B7"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/bSpojniceB8"
+                android:layout_width="fill_parent"
+                android:layout_height="41dp"
+                android:layout_marginTop="1.5dp"
+                android:background="@drawable/buttons"
+                android:gravity="top|center_horizontal"
+                android:tag="r"
+                android:text="B8"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="3" >
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/bIzlazSpojnice"
+                android:layout_width="80dp"
+                android:layout_height="42dp"
+                android:layout_gravity="center"
+                android:background="@drawable/buttons"
+                android:gravity="center"
+                android:text="Izlaz!"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/tvPoeniSpojnice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tvScore"
+                android:textColor="#000000"
+                android:textSize="21sp" />
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/tvVremeSpojnice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30"
+                android:textColor="#ff0000"
+                android:textSize="21sp" />
+            
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
