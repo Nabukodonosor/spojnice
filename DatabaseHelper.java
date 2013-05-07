@@ -48,7 +48,7 @@ public void createDataBase() throws IOException
     }
 /**
  * Check if the database already exist to avoid re-copying the file each time you open the application.
- * @return true if it exists, false if it doesn't
+ *  true if it exists, false if it doesn't
  */
 public boolean checkDataBase(){
 
@@ -107,7 +107,7 @@ return checkDB != null ? true : false;
         //mDataBase = SQLiteDatabase.openDatabase(mPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS);
         return mDataBase != null;
     }
-    @Override
+    
     public void close() 
     {
         if(mDataBase != null)
@@ -115,11 +115,11 @@ return checkDB != null ? true : false;
         super.close();
     }
 
-  @Override
+  
 	public void onCreate(SQLiteDatabase arg0) {
 		}
 
-	@Override
+	
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		 mContext.deleteDatabase(DB_NAME);
 		 try {
