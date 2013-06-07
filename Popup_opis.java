@@ -15,17 +15,17 @@ import android.widget.TextView;
 
 public class Popup_opis extends Activity implements OnClickListener{
 
-  TextView tvOpis,tvNaslov,tvBrojPoena, tvResenje;
+	TextView tvOpis,tvNaslov,tvBrojPoena, tvResenje;
 	String primljenOpis, naslov, resenje;
 	int brojPoenaPrimljeno;
 	Button OK;
 	
 	private Context context;
 	
-	public static void closePitanja(Context context) {
+	public void closePitanja(Context context) {
 	    Intent intent = new Intent("Pitanja_Cigle");
 	    intent.putExtra("action", "close");
-	    LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+	    LocalBroadcastManager.getInstance(Popup_opis.this).sendBroadcast(intent);
 	}
 	
 	@Override
