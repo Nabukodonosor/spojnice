@@ -18,7 +18,9 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.text.Editable;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -31,7 +33,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class Cigle extends Activity implements OnClickListener{
-  
+	
 	boolean music;
 	ImageButton b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16, b17, b18, b19, b20, b21, b22, b23, b24, 
 	b25, b26, b27, b28, b29, b30, b31, b32, b33, b34, b35, b36;
@@ -49,8 +51,9 @@ public class Cigle extends Activity implements OnClickListener{
 	MediaPlayer buttonClicks, buttonBack, buttonFinal;
 	String istekloVreme = "Isteklo vreme!!";
 	String tacanOdgovor = "Tačan odgovor!!";
+
 	
-	MyCount brojacVremena = new MyCount(120000, 1000);	
+	MyCount brojacVremena = new MyCount(20000, 1000);	
 
 	final private static int B1 = 1;
 	final private static int B2 = 2;
@@ -107,8 +110,6 @@ public class Cigle extends Activity implements OnClickListener{
         	nextQuestion();
         }
      };
-	
-	
 
 	@Override
 	protected void onActivityResult(int reqCode, int resultCode, Intent i) {
@@ -513,7 +514,7 @@ public class Cigle extends Activity implements OnClickListener{
 		case REQ:
 		skloniCigle();
 		rezultat.setText("" + brojPoenaCigle);
-		mHandler.postDelayed(mLaunchTaskFinish,5000);
+		mHandler.postDelayed(mLaunchTaskFinish,4000);
 		break;
 	}
 	}
@@ -530,14 +531,11 @@ public class Cigle extends Activity implements OnClickListener{
 		SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 		music = getPrefs.getBoolean("checkbox", true);
 		
-		TestAdapter mDbHelper = new TestAdapter(this);
-		mDbHelper.createDatabase();
-		
 		InicirajVariable();
 		
 		nextQuestion();
 	}
-	
+
 	public class MyCount extends CountDownTimer {
 
         public MyCount(long millisInFuture, long countDownInterval) {
@@ -556,11 +554,13 @@ public class Cigle extends Activity implements OnClickListener{
     		i.putExtra("brojPoenaPrimljeno", trenutnaIgra);
     		i.putExtra("poslatOpis", opis);
     		i.putExtra("naslov", istekloVreme);
+    		i.putExtra("resenje", konResenje);
     		startActivityForResult(i, REQ);
     		
     		brojacVremena.cancel();
     		
     		konacnoResenje.setText(konResenje);
+    		
         	}
 
 		@Override
@@ -1059,6 +1059,7 @@ public class Cigle extends Activity implements OnClickListener{
 			Intent resp = new Intent();
         	resp.putExtra("score", brojPoenaCigle);
         	setResult(1, resp);
+        	brojacVremena.cancel();
         	finish();
 			break;
 		case R.id.bKonacnoCigle:
@@ -1096,6 +1097,7 @@ public class Cigle extends Activity implements OnClickListener{
                                                 		i.putExtra("brojPoenaPrimljeno", trenutnaIgra);
                                                 		i.putExtra("poslatOpis", opis);
                                                 		i.putExtra("naslov", tacanOdgovor);
+                                                		i.putExtra("resenje", konResenje);
                                                 		startActivityForResult(i, REQ);
                                                 		
                                                 		brojacVremena.cancel();
@@ -1126,7 +1128,31 @@ public class Cigle extends Activity implements OnClickListener{
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		//skloniCigle();
-		
-	}	
+		//skloniCigle();	
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if ((keyCode == KeyEvent.KEYCODE_BACK))
+	    {
+	        finish();
+	        brojacVremena.cancel();
+	    }
+		return super.onKeyDown(keyCode, event);
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		finish();
+		brojacVremena.cancel();
+	}
+
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		brojacVremena.cancel();
+		finish();
+	}
+	
 }
